@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Self-Selecting Computer</title>
+  <meta name="description" content="A computer that selects all of its own programs. Goal-driven software selection, self-registration, internet, browser, server, GPU awareness, and more." />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #121820;
+      --border: #1e2a38;
+      --text: #e6edf5;
+      --muted: #8b9cb3;
+      --accent: #38bdf8;
+      --accent2: #a78bfa;
+      --ok: #4ade80;
+      --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.75rem;
+    }
+    .tagline { color: var(--muted); font-size: 1.15rem; max-width: 36rem; margin: 0 auto 1.5rem; }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+    .badge {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    section { margin-bottom: 2.75rem; }
+    h2 {
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    h2::before {
+      content: "";
+      width: 4px; height: 1.1em;
+      background: var(--accent2);
+      border-radius: 2px;
+    }
+    p, li { color: var(--muted); }
+    p { margin-bottom: 0.85rem; }
+    ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.4rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .card h3 { color: var(--text); font-size: 1.05rem; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.92rem; margin: 0; }
+    pre, .term {
+      background: #0a0e13;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      overflow-x: auto;
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: #c8d6e5;
+    }
+    .term .prompt { color: var(--ok); }
+    .term .cmd { color: var(--accent); }
+    .term .out { color: var(--muted); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .cta {
+      display: inline-block;
+      background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+      color: white !important;
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      margin: 0.4rem 0.4rem 0.4rem 0;
+      text-decoration: none !important;
+    }
+    .cta:hover { filter: brightness(1.08); }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    code { background: #1a2330; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.88em; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Self-Selecting Computer</h1>
+      <p class="tagline">A computer that chooses every program it runs. Nothing is hard-wired except the discovery and selection kernel.</p>
+      <div class="badges">
+        <span class="badge">Goal-driven selection</span>
+        <span class="badge">Self-registering programs</span>
+        <span class="badge">Internet + Browser</span>
+        <span class="badge">HTTP Server</span>
+        <span class="badge">GPU-aware</span>
+        <span class="badge">19+ programs</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>What it is</h2>
+      <p>
+        At every boot the machine senses its environment, discovers every program that has
+        <strong>self-registered</strong>, scores them against a high-level goal, and loads only
+        the coherent subset that fits its resource budget.
+      </p>
+      <p>
+        There is no master list of required software. Programs announce their own capabilities,
+        costs, and dependencies. The selector decides the entire software complement.
+      </p>
+    </section>
+
+    <section>
+      <h2>Capabilities</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Self-Selection</h3>
+          <p>Goal + environment scoring. Programs are chosen, never pre-installed.</p>
+        </div>
+        <div class="card">
+          <h3>Internet &amp; Browser</h3>
+          <p>Real HTTP fetch, stateful mini-browser, connectivity probes.</p>
+        </div>
+        <div class="card">
+          <h3>HTTP Server</h3>
+          <p>Live status server on port 8765 with JSON API and HTML dashboard.</p>
+        </div>
+        <div class="card">
+          <h3>GPU Awareness</h3>
+          <p>Detects CUDA, reports devices, runs tensor workloads with CPU fallback.</p>
+        </div>
+        <div class="card">
+          <h3>Self-Extension</h3>
+          <p>Can generate new program files that become discoverable on the next boot.</p>
+        </div>
+        <div class="card">
+          <h3>Interactive Terminal</h3>
+          <p>Live REPL: change goals, re-select, run cycles, inspect scores.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Quick start</h2>
+      <div class="term">
+        <div><span class="prompt">$</span> <span class="cmd">git clone https://github.com/fitzyracing1/self-selecting-computer.git</span></div>
+        <div><span class="prompt">$</span> <span class="cmd">cd self-selecting-computer</span></div>
+        <div><span class="prompt">$</span> <span class="cmd">python3 main.py --terminal</span></div>
+        <div class="out"># or one-shot:</div>
+        <div><span class="prompt">$</span> <span class="cmd">python3 main.py -g "connect to the internet and run a server"</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Example selection</h2>
+      <p>Goal: <code>use the gpu for heavy tensor compute and matrix acceleration</code></p>
+      <div class="term">
+        <div class="out">selected gpu            (score=24.30)</div>
+        <div class="out">selected math_engine    (score=7.07)</div>
+        <div class="out">selected calculator     (score=4.58)</div>
+        <div class="out">selected sys_monitor …</div>
+        <div class="out">→ GPU program loaded first, falls back to CPU when no device present</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Architecture</h2>
+      <div class="term">
+self_selecting_computer/
+├── main.py                 # entry + interactive terminal
+├── core/
+│   ├── catalog.py          # ProgramMeta + dynamic discovery
+│   ├── selector.py         # goal-driven scoring
+│   ├── computer.py         # the machine
+│   └── terminal.py         # interactive REPL
+├── programs/               # every module self-registers
+│   ├── sys_monitor, logger, reporter, …
+│   ├── web_fetcher, browser, net_status
+│   ├── server, gpu, …
+│   └── auto_prog_*.py      # generated at runtime
+├── data/  logs/
+└── docs/                   # this GitHub Pages site
+      </div>
+    </section>
+
+    <section>
+      <h2>Get the code</h2>
+      <p>
+        <a class="cta" href="https://github.com/fitzyracing1/self-selecting-computer">View on GitHub</a>
+        <a class="cta" href="https://github.com/fitzyracing1/self-selecting-computer/archive/refs/heads/main.zip">Download ZIP</a>
+      </p>
+      <p style="margin-top:1rem">
+        Local server (when running): <code>http://127.0.0.1:8765/</code><br>
+        Endpoints: <code>/</code> · <code>/status</code> · <code>/programs</code> · <code>/goal</code> · <code>/results</code>
+      </p>
+    </section>
+
+    <footer>
+      Self-Selecting Computer · built so a machine can choose all of its own programs<br>
+      <a href="https://github.com/fitzyracing1">fitzyracing1</a>
+    </footer>
+  </div>
+</body>
+</html>
